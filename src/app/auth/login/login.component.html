@@ -2,6 +2,7 @@
 <div class="alert alert-{{message.type}}" *ngIf="message.text && !form.get.invalid">
     {{message.text}}
 </div>
+
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group" [ngClass]="{'has-error':form.get('email').invalid && form.get('email').touched}">
         <label for="email">Email</label>
@@ -14,7 +15,7 @@
     <div class="form-group" [ngClass]="{'has-error':form.get('password').invalid && form.get('password').touched}">
         <label for="password">Пароль</label>
         <input type="password" class="form-control underlined" id="password" placeholder="Пароль" formControlName="password">
-        <span class="form-help-text" *ngIf="form.get('password').invalid && form.get('password').touched">
+        <span class="form-help-text" *ngIf="form.get('password').invalid && form.get('password').touched && form.get('password')['errors']['minlength']['requiredLength']">
             <span *ngIf="form.get('password')['errors']['required']">Пароль не может быть пустым</span>
             <span *ngIf="form.get('password')['errors']['minlength']">
                 Пароль должен быть больше
@@ -24,9 +25,9 @@
             </span>
         </span>
     </div>
-    <!-- сделать кнопку неактивной пока форма не валидируется  -->
+    
     <div class="form-group">
-        <button type="submit" class="btn btn-block btn-primary">
+        <button type="submit" class="btn btn-block btn-primary" [disabled]="form.invalid">
             Войти
         </button>
     </div>

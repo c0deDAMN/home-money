@@ -18,4 +18,7 @@ export class UsersService {
         return this.http.get(`http://localhost:3000/users?email=${email}`);
     }
 
+    createNewUser(user: User){
+        return this.http.post(`http://localhost:3000/users`, user);
+    }
 }

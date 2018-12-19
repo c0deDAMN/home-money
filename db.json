@@ -5,6 +5,36 @@
       "email": "wfm@mail.ru",
       "password": "12345678",
       "name": "Администратор"
+    },
+    {
+      "email": "dsfd@dwaes",
+      "password": "sadfsf",
+      "name": "sdfsdf",
+      "id": 2
+    },
+    {
+      "email": "sdfdsa@f",
+      "password": "sadfsadf",
+      "name": "sdfsdf",
+      "id": 3
+    },
+    {
+      "email": "sdfdsa@f",
+      "password": "sadfsadf",
+      "name": "zxc",
+      "id": 4
+    },
+    {
+      "email": "pazan@sd",
+      "password": "asdasdsad",
+      "name": "Fil",
+      "id": 5
+    },
+    {
+      "email": "sadfdsf@dsf",
+      "password": "sadfsadf",
+      "name": "asdf",
+      "id": 6
     }
   ],
   "bill": {
