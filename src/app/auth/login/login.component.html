@@ -1,5 +1,5 @@
 <p class="text-xs-center">Войдите для работы</p>
-<div class="alert alert-{{message.type}}" *ngIf="message.text">
+<div class="alert alert-{{message.type}}" *ngIf="message.text && !form.get.invalid">
     {{message.text}}
 </div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -26,11 +26,13 @@
     </div>
     <!-- сделать кнопку неактивной пока форма не валидируется  -->
     <div class="form-group">
-        <button type="submit" class="btn btn-block btn-primary">Войти</button>
+        <button type="submit" class="btn btn-block btn-primary">
+            Войти
+        </button>
     </div>
     <div class="form-group">
         <p class="text-muted text-xs-center">
-            Нет аккаунта? <a href="#">Зарегистрироваться!</a>
+            Нет аккаунта? <a [routerLink]="'/registration'">Зарегистрироваться!</a>
         </p>
     </div>
 </form>
