@@ -3,10 +3,6 @@ import { BillService } from '../shared/services/bill.service';
 import { Observable } from 'rxjs';
 import { Bill } from '../shared/models/bill.model';
 
-interface Cur {
-  "USD": number, 
-  "RUB": number
-}
 
 @Component({
   selector: 'wfm-bill-page',
@@ -18,21 +14,23 @@ interface Cur {
 
 export class BillPageComponent implements OnInit {
 
+
   constructor(private billService: BillService) { }
 
   bill: Bill;
-  currency: Cur;
+  currency: any;
+
+  isLoaded= false;
 
   ngOnInit() {
 
     this.billService.getBill().subscribe((data: Bill) => {
       this.bill = data;
-      console.log(this.bill);
     })
 
-    this.billService.getCurrency().subscribe((data: Cur) => {
-      this.currency = data['rates'];
-      console.log(this.currency);
+    this.billService.getCurrency().subscribe((data: any) => {
+      this.currency = data;
+      this.isLoaded = true;
     })
 
 
@@ -48,4 +46,12 @@ export class BillPageComponent implements OnInit {
   // тоже самое
   // ngOnDestroy(): void {
   // }
+
+  onRefresh(){
+    this.isLoaded = false;
+    this.billService.getCurrency().subscribe((data: any) => {
+      this.currency = data;
+      this.isLoaded = true;
+    })
+  }
 }
