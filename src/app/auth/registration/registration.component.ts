@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/shared/services/users.service';
 import { User } from 'src/app/shared/models/user.model';
 import { Router } from '@angular/router';
-import { reject } from 'q';
 
 @Component({
   selector: 'wfm-registration',
