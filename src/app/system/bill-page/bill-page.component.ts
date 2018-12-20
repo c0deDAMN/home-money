@@ -23,7 +23,6 @@ export class BillPageComponent implements OnInit {
   bill: Bill;
   currency: Cur;
 
-  //разобраться 
   ngOnInit() {
 
     this.billService.getBill().subscribe((data: Bill) => {
@@ -36,8 +35,17 @@ export class BillPageComponent implements OnInit {
       console.log(this.currency);
     })
 
-    
 
+    //метод из уроков, загуглить объединение методов сервиса !!!!!!!
+    // this.subscription = Observable.combineLatest(
+    //     this.billService.getBill()
+    //     this.billService.getCurrency(),
+    // ).subscribe((data: [Bill, any]) => {
+    //   console.log(data);
+    // });
   }
 
+  // тоже самое
+  // ngOnDestroy(): void {
+  // }
 }
