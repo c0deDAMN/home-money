@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { BillService } from '../shared/services/bill.service';
 import { Observable } from 'rxjs';
 import { Bill } from '../shared/models/bill.model';
-import { currentId } from 'async_hooks';
 
 
 @Component({

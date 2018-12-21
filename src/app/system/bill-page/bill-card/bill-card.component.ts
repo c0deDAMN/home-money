@@ -1,5 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
+
 import { Bill } from '../../shared/models/bill.model';
+import { BillService } from '../../shared/services/bill.service';
+
 
 @Component({
   selector: 'wfm-bill-card',
@@ -13,10 +16,7 @@ export class BillCardComponent implements OnInit {
 
   dollar: number;
   euro: number;
-
-
-  constructor() { }
-
+ 
   ngOnInit() {
     // почему то массив перестает оперделятся после первой ссылки на него
     // в уроках через const { rates } --не работет нихрена 
