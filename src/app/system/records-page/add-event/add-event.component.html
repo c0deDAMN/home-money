@@ -6,6 +6,10 @@
   </div>
   <div class="card-block">
 
+    <div class="alert alert-{{message.type}}" *ngIf="message.text">
+      {{message.text}}
+    </div>
+
     <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="form-group">
         <label class="control-label" for="category">Выберите категорию</label>
@@ -37,7 +41,7 @@
         </span>
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error': amount.invalid && amount.touched}">
+      <div class="form-group" [ngClass]="{'has-error': description.invalid && description.touched}">
           <label class="control-label" for="amount">
             Введите описание
           </label>

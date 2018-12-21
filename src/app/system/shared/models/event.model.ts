@@ -7,4 +7,5 @@ export class WfmEvent {
         public description: string,
         public id?: string
     ) { }
+
 }
