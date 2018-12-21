@@ -15,19 +15,19 @@
           </thead>
           <tbody>
             <tr>
-              <td>доллар</td>
-              <td>24</td>
-              <td>12.12.2017</td>
+              <td>рубль</td>
+              <td>1</td>
+              <td>{{ currency.date }}</td>
             </tr>
             <tr>
               <td>евро</td>
-              <td>26</td>
-              <td>12.12.2017</td>
+              <td>{{ currency.rates.RUB }}</td>
+              <td>{{ currency.date }}</td>
             </tr>
             <tr>
-              <td>рубль</td>
-              <td>0.4</td>
-              <td>12.12.2017</td>
+              <td>доллар</td>
+              <td>{{ currency.rates.USD }}</td>
+              <td>{{ currency.date }}</td>
             </tr>
           </tbody>
         </table>

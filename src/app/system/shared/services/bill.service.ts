@@ -6,14 +6,11 @@ import { BaseApi } from 'src/app/shared/core/base-api';
 
 @Injectable()
 
-export class BillService extends BaseApi{
-    constructor(public http: HttpClient) { 
+export class BillService extends BaseApi {
+    constructor(public http: HttpClient) {
         super(http);
     }
 
-    // getBill() {
-    //     return this.http.get('http://localhost:3000/bill');
-    // }
     getBill() {
         return this.get('bill');
     }

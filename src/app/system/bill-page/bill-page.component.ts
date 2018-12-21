@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BillService } from '../shared/services/bill.service';
 import { Observable } from 'rxjs';
 import { Bill } from '../shared/models/bill.model';
+import { currentId } from 'async_hooks';
 
 
 @Component({
@@ -20,18 +21,20 @@ export class BillPageComponent implements OnInit {
   bill: Bill;
   currency: any;
 
-  isLoaded= false;
+  isLoaded = false;
 
   ngOnInit() {
 
     this.billService.getBill().subscribe((data: Bill) => {
       this.bill = data;
+      this.isLoaded = true;
     })
 
     this.billService.getCurrency().subscribe((data: any) => {
       this.currency = data;
-      this.isLoaded = true;
     })
+
+
 
 
     //метод из уроков, загуглить объединение методов сервиса !!!!!!!
@@ -47,7 +50,7 @@ export class BillPageComponent implements OnInit {
   // ngOnDestroy(): void {
   // }
 
-  onRefresh(){
+  onRefresh() {
     this.isLoaded = false;
     this.billService.getCurrency().subscribe((data: any) => {
       this.currency = data;
