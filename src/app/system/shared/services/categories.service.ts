@@ -14,4 +14,12 @@ export class CategoriesService extends BaseApi {
     addCategory(category: Category) {
         return this.post('categories', category);
     }
+
+    getCategories() {
+        return this.get('categories');
+    }
+
+    updateCategory(category: Category) {
+        return this.put(`categories/${category.id}`, category);
+    }
 }
