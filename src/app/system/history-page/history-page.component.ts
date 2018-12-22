@@ -42,7 +42,6 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
   calculateChartData(): void {
     this.chartData = [];
 
-    console.log(this.isLoaded1)
     if (!this.isLoaded1) {
       console.log("sorry:-/(");
     }

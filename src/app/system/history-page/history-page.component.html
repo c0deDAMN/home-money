@@ -11,7 +11,7 @@
 <div *ngIf="isLoaded1 && isLoaded2">
   <wfm-history-chart [chartData] = "chartData"></wfm-history-chart>
 
-  <wfm-history-events></wfm-history-events>
+  <wfm-history-events [categories]="categories" [events]="events"></wfm-history-events>
 
   <wfm-history-filter></wfm-history-filter>
 </div>

@@ -89,6 +89,22 @@
       "date": "22.12.2018 15:59:11",
       "description": "test",
       "id": 7
+    },
+    {
+      "type": "outcome",
+      "amount": 1000,
+      "category": 4,
+      "date": "22.12.2018 16:59:57",
+      "description": "test",
+      "id": 8
+    },
+    {
+      "type": "income",
+      "amount": 1000,
+      "category": 4,
+      "date": "22.12.2018 17:00:10",
+      "description": "test",
+      "id": 9
     }
   ]
 }
