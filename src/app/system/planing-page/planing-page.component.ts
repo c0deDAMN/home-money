@@ -19,7 +19,7 @@ export class PlaningPageComponent implements OnInit {
     private eventService: EventService) { }
 
   ngOnInit() {
-    
+    //создать две переменные isLoaded!!!!!!!!!! 
   }
 
 }

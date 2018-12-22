@@ -21,16 +21,18 @@ export class BillPageComponent implements OnInit {
   currency: any;
 
   isLoaded = false;
+  isLoaded2 = false;
 
   ngOnInit() {
 
     this.billService.getBill().subscribe((data: Bill) => {
       this.bill = data;
-      this.isLoaded = true;
+      this.isLoaded2 = true;
     })
 
     this.billService.getCurrency().subscribe((data: any) => {
       this.currency = data;
+      this.isLoaded = true;
     })
 
 
