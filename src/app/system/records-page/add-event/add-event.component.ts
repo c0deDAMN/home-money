@@ -47,7 +47,7 @@ export class AddEventComponent implements OnInit, OnDestroy {
     let { amount, description, category, type } = form.value;
     if (amount < 0) amount *= -1;
 
-    let event = new WfmEvent(type, amount, category, moment().format('DD.MM.YYYY HH:mm:ss'), description);
+    let event = new WfmEvent(type, amount, +category, moment().format('DD.MM.YYYY HH:mm:ss'), description);
 
     this.sub1 = this.billService.getBill().subscribe((bill: Bill) => {
       let value = 0;

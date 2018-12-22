@@ -20,6 +20,6 @@ export class CategoriesService extends BaseApi {
     }
 
     updateCategory(category: Category) {
-        return this.put(`categories/${category.id}`, category);
+        return this.put(`categories/${+category.id}`, category);
     }
 }
