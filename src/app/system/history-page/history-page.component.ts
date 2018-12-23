@@ -12,8 +12,7 @@ import { Subscription } from 'rxjs';
 })
 export class HistoryPageComponent implements OnInit, OnDestroy {
 
-  isLoaded1 = false;
-  isLoaded2 = false;
+  isLoaded = false;
 
   s1: Subscription;
   s2: Subscription;
@@ -23,30 +22,45 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
 
   categories: Category[] = [];
   events: WfmEvent[] = [];
+  filteredEvents: WfmEvent[] = [];
 
   chartData = [];
 
   isFilterVisible = false;
 
   ngOnInit() {
+    //рабочий, но корявый метод
+
+    // this.s1 = this.categoriesService.getCategories().subscribe((date: Category[]) => {
+    //   this.categories = date;
+    //   this.isLoaded1 = true;
+    // });
+
+    // this.s2 = this.eventsService.getEvents().subscribe((date: WfmEvent[]) => {
+    //   this.events = date;
+    //   this.isLoaded2 = true;
+    //   this.calculateChartData();
+    // });
+
+    //вложим для синхронизации один subscribe в другой
     this.s1 = this.categoriesService.getCategories().subscribe((date: Category[]) => {
       this.categories = date;
-      this.isLoaded1 = true;
-    });
+      this.eventsService.getEvents().subscribe((date: WfmEvent[]) => {
+        this.events = date;
+        this.isLoaded = true;
 
-    this.s2 = this.eventsService.getEvents().subscribe((date: WfmEvent[]) => {
-      this.events = date;
-      this.isLoaded2 = true;
-      this.calculateChartData();
+        this.setOriginalEvents()
+        this.calculateChartData();
+      });
     });
+  }
+
+  private setOriginalEvents() {
+    this.filteredEvents = this.events.slice();
   }
 
   calculateChartData(): void {
     this.chartData = [];
-
-    if (!this.isLoaded1) {
-      console.log("sorry:-/(");
-    }
 
     this.categories.forEach((cat) => {
       const catEvent = this.events.filter((e) => e.category === cat.id && e.type === 'outcome');
@@ -64,21 +78,21 @@ export class HistoryPageComponent implements OnInit, OnDestroy {
     this.isFilterVisible = dir;
   }
 
-  openFilter(){
+  openFilter() {
     this.toggleFilterVisibility(true);
   }
 
-  onFilterApply(filterData){
-  console.log(filterData);
+  onFilterApply(filterData) {
+    this.toggleFilterVisibility(false);
+    console.log(filterData);
   }
 
-  onFilterCancel(){
+  onFilterCancel() {
     this.toggleFilterVisibility(false);
   }
 
   ngOnDestroy() {
     if (this.s1) this.s1.unsubscribe();
-    if (this.s2) this.s2.unsubscribe();
   }
 
 }

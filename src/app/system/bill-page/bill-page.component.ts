@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BillService } from '../shared/services/bill.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Bill } from '../shared/models/bill.model';
 
 
@@ -12,7 +12,7 @@ import { Bill } from '../shared/models/bill.model';
 
 
 
-export class BillPageComponent implements OnInit {
+export class BillPageComponent implements OnInit, OnDestroy {
 
 
   constructor(private billService: BillService) { }
@@ -21,35 +21,19 @@ export class BillPageComponent implements OnInit {
   currency: any;
 
   isLoaded = false;
-  isLoaded2 = false;
+
+  s1: Subscription;
 
   ngOnInit() {
 
-    this.billService.getBill().subscribe((data: Bill) => {
+    this.s1 = this.billService.getBill().subscribe((data: Bill) => {
       this.bill = data;
-      this.isLoaded2 = true;
+      this.billService.getCurrency().subscribe((data: any) => {
+        this.currency = data;
+        this.isLoaded = true;
+      })
     })
-
-    this.billService.getCurrency().subscribe((data: any) => {
-      this.currency = data;
-      this.isLoaded = true;
-    })
-
-
-
-
-    //метод из уроков, загуглить объединение методов сервиса !!!!!!!
-    // this.subscription = Observable.combineLatest(
-    //     this.billService.getBill()
-    //     this.billService.getCurrency(),
-    // ).subscribe((data: [Bill, any]) => {
-    //   console.log(data);
-    // });
   }
-
-  // тоже самое
-  // ngOnDestroy(): void {
-  // }
 
   onRefresh() {
     this.isLoaded = false;
@@ -57,5 +41,9 @@ export class BillPageComponent implements OnInit {
       this.currency = data;
       this.isLoaded = true;
     })
+  }
+
+  ngOnDestroy(){
+    if(this.s1) this.s1.unsubscribe();
   }
 }

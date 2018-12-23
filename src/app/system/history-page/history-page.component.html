@@ -10,11 +10,11 @@
   </button>
 </div>
 
-<div class="text-center" *ngIf="!isLoaded1 && !isLoaded2">
+<div class="text-center" *ngIf="!isLoaded">
   Loading....
 </div>
 
-<div *ngIf="isLoaded1 && isLoaded2">
+<div *ngIf="isLoaded">
   <wfm-history-chart [chartData]="chartData"></wfm-history-chart>
 
   <wfm-history-events [categories]="categories" [events]="events"></wfm-history-events>
