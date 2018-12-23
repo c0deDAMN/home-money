@@ -15,14 +15,9 @@ import { WfmEvent } from '../shared/models/event.model';
 })
 export class PlaningPageComponent implements OnInit, OnDestroy {
 
-  //исправить когда найду как синхронизировать асинхронные запросы, а пока на каждый запрос свой флаг загрузки
-  isLoaded1 = false;
-  isLoaded2 = false;
-  isLoaded3 = false;
+  isLoaded = false;
 
   sub1: Subscription;
-  sub2: Subscription;
-  sub3: Subscription;
 
   bill: Bill;
   categories: Category[] = [];
@@ -36,15 +31,13 @@ export class PlaningPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub1 = this.billService.getBill().subscribe((data: Bill) => {
       this.bill = data;
-      this.isLoaded1 = true;
-    });
-    this.sub2 = this.categoriesService.getCategories().subscribe((data: Category[]) => {
-      this.categories = data;
-      this.isLoaded2 = true;
-    });
-    this.sub3 = this.eventService.getEvents().subscribe((data: WfmEvent[]) => {
-      this.events = data;
-      this.isLoaded3 = true;
+      this.categoriesService.getCategories().subscribe((data: Category[]) => {
+        this.categories = data;
+        this.eventService.getEvents().subscribe((data: WfmEvent[]) => {
+          this.events = data;
+          this.isLoaded = true;
+        });
+      });
     });
   }
 
@@ -73,8 +66,6 @@ export class PlaningPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.sub1) this.sub1.unsubscribe();
-    if (this.sub2) this.sub2.unsubscribe();
-    if (this.sub3) this.sub3.unsubscribe();
   }
 
 

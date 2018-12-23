@@ -4,7 +4,7 @@
   </h3>
 </div>
 
-<section class="section" *ngIf="isLoaded1 && isLoaded2 && isLoaded3">
+<section class="section" *ngIf="isLoaded">
 
   <div class="row">
     <div class="col-md-12">
@@ -35,7 +35,8 @@
                 из
                 <span class="text-primary">{{c.capacity | number:'1.2'}}</span>
                 |
-                осталось <span class="text-{{getCatColorClass(c)}}">{{c.capacity - getCategoryCost(c) | number:'1.2'}}</span> (руб.)
+                осталось <span class="text-{{getCatColorClass(c)}}">{{c.capacity - getCategoryCost(c) | number:'1.2'}}</span>
+                (руб.)
               </p>
             </div>
           </div>
@@ -46,4 +47,6 @@
   </div>
 </section>
 
-<section class="section" *ngIf="!isLoaded1 && !isLoaded2 && !isLoaded3">Loading....</section>
+<section class="section text-center" *ngIf="!isLoaded">
+  <wfm-loader></wfm-loader>
+</section>
