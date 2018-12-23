@@ -6,12 +6,13 @@ import { Message } from 'src/app/shared/models/message.module';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { fadeStateTrigger } from 'src/app/shared/animations/fade.animation';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'wfm-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  animations:[fadeStateTrigger]
+  animations: [fadeStateTrigger]
 })
 export class LoginComponent implements OnInit {
 
@@ -22,8 +23,22 @@ export class LoginComponent implements OnInit {
     private userService: UsersService,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private title: Title,
+    private meta: Meta
+  ) {
+    title.setTitle('Вход в систему');
+    meta.addTags([
+      {
+        name: 'keywords',
+        content: 'логин, вход, система'
+      },
+      {
+        name: 'description',
+        content: 'Страница для входа в систему'
+      }
+    ]);
+  }
 
   ngOnInit() {
     this.message = new Message('danger', '');
@@ -34,7 +49,7 @@ export class LoginComponent implements OnInit {
           text: 'Теперь вы можете зайти в систему',
           type: 'success'
         });
-      } else if(params['accessDenied']){
+      } else if (params['accessDenied']) {
         this.showMessage({
           text: 'Для работы с системой вам необходимо войти',
           type: 'warning'
