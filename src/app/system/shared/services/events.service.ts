@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class EventService extends BaseApi {
 
-    constructor(public httpClient: HttpClient) {
-        super(httpClient);
+    constructor(public http: HttpClient) {
+        super(http);
     }
 
     addEvent(event: WfmEvent) {
@@ -20,7 +20,10 @@ export class EventService extends BaseApi {
         return this.get('events');
     }
 
-    getEventById(id: string): Observable<any> {
-        return this.get(`events/${id}`);
+    //проверка фичи новой версии ангуляр(добавил в BaseApi get1)
+    
+
+    getEventById(id: string): Observable<WfmEvent> {
+        return this.get1(`events/${id}`);
     }
 }

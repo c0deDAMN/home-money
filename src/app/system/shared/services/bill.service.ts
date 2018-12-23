@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Bill } from '../models/bill.model';
 import { BaseApi } from 'src/app/shared/core/base-api';
+import { Observable } from 'rxjs';
 
 @Injectable()
 
