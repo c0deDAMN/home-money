@@ -1,12 +1,12 @@
-export interface WfmEvent {
-
-    type: string;
-    amount: number;
-    category: number;
-    date: string;
-    description: string;
-    id?: string;
-    catName?: string;
-
+export class WfmEvent {
+constructor(
+    public type: string,
+    public amount: number,
+    public category: number,
+    public date: string,
+    public description: string,
+    public id?: string,
+    public catName?: string,
+){}
 
 }

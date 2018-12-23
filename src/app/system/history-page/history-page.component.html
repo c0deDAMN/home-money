@@ -4,14 +4,27 @@
   </h3>
 </div>
 
+<div class="pull-right">
+  <button class="btn-sm btn btn-primary-outline" (click)="openFilter()">
+    <i class="fa fa-filter"></i>
+  </button>
+</div>
+
 <div class="text-center" *ngIf="!isLoaded1 && !isLoaded2">
   Loading....
 </div>
 
 <div *ngIf="isLoaded1 && isLoaded2">
-  <wfm-history-chart [chartData] = "chartData"></wfm-history-chart>
+  <wfm-history-chart [chartData]="chartData"></wfm-history-chart>
 
   <wfm-history-events [categories]="categories" [events]="events"></wfm-history-events>
 
-  <wfm-history-filter></wfm-history-filter>
+  <div>
+    <wfm-history-filter 
+    *ngIf="isFilterVisible" 
+    (onFilterApply)="onFilterApply($event)" 
+    (onFilterCancel)="onFilterCancel()"
+    [categories]="categories"
+    ></wfm-history-filter>
+  </div>
 </div>
