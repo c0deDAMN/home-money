@@ -1,5 +1,5 @@
 <p class="text-xs-center">Войдите для работы</p>
-<div class="alert alert-{{message.type}}" *ngIf="message.text && !form.get.invalid">
+<div class="alert alert-{{message.type}}" *ngIf="message.text && !form.get.invalid" @fade>
     {{message.text}}
 </div>
 

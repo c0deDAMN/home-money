@@ -5,11 +5,13 @@ import { UsersService } from 'src/app/shared/services/users.service';
 import { Message } from 'src/app/shared/models/message.module';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { fadeStateTrigger } from 'src/app/shared/animations/fade.animation';
 
 @Component({
   selector: 'wfm-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations:[fadeStateTrigger]
 })
 export class LoginComponent implements OnInit {
 

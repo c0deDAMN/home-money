@@ -6,8 +6,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'system', loadChildren: './system/system.module#SystemModule' },
   { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '/404' }
-
+  // { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
